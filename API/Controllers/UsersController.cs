@@ -37,5 +37,6 @@ namespace API.Controllers
             var user = await _context.Users.FindAsync(id);
             return Ok(user);
         }
+
     }
 }
