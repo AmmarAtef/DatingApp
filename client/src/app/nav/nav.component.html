@@ -12,12 +12,14 @@
         <li class="nav-item">
           <a class="nav-link" tabindex="-1" aria-disabled="true" routerLink='/messages'
             routerLinkActive='active'>Messages</a>
+          <a class="nav-link" tabindex="-1" aria-disabled="true" routerLink='/errors'
+            routerLinkActive='active'>Errors</a>
         </li>
       </ng-container>
     </ul>
 
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async)as user" dropdown>
-      <a class="dropdown-toggle text-light" dropdownToggle>{{user.userName |  titlecase}}</a>
+      <a class="dropdown-toggle text-light" dropdownToggle>{{user.userName | titlecase}}</a>
       <div class="dropdown-menu mt-3" *dropdownMenu>
         <a class="dropdown-item">Edit Profile</a>
         <li class="divider dropdown-divider"></li>
