@@ -4,10 +4,8 @@ using API.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using API.Helpers;
 
 namespace API.Extensions
 {
@@ -16,6 +14,8 @@ namespace API.Extensions
         public static IServiceCollection AddApplicationsServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             //Define sql server connection String .
             string connectionString = config.GetConnectionString("DefaultConnection");
 
