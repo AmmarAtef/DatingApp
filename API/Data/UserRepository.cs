@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using API.Helpers;
 
 namespace API.Data
 {
@@ -18,6 +19,7 @@ namespace API.Data
         public UserRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
@@ -49,11 +51,13 @@ namespace API.Data
             _context.Entry(user).State = EntityState.Modified;
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        public async Task<PageList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
-            return await _context.Users
-                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+            var query = _context.Users
+                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                 .AsNoTracking();
+            return await PageList<MemberDto>
+                .CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<MemberDto> GetMemberAsync(string username)
