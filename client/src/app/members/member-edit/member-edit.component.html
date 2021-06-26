@@ -27,12 +27,12 @@
                 </div>
                 <div>
                     <strong>
-                        created: <p> {{member.created}}</p>
+                        created: <p> {{member.created | date:"dd MMM YYYY"}}</p>
                     </strong>
                 </div>
                 <div>
                     <strong>
-                        lastActive: <p> {{member.lastActive}}</p>
+                        lastActive: <p> {{member.lastActive | timeago}}</p>
                     </strong>
                 </div>
             </div>
