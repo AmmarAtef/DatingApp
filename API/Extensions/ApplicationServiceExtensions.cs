@@ -18,6 +18,7 @@ namespace API.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<LogUserActivity>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILikesRepository, LikesRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             //Define sql server connection String .
             string connectionString = config.GetConnectionString("DefaultConnection");

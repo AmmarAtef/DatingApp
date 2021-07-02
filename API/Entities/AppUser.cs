@@ -6,6 +6,10 @@ namespace API.Entities
 {
     public class AppUser
     {
+        public AppUser()
+        {
+            
+        }
         public int Id { get; set; }
 
         public string UserName { get; set; }
@@ -35,5 +39,10 @@ namespace API.Entities
         {
             return DateOfBirth.CalculateAge();
         }
+
+        public ICollection<UserLike> LikedByUsers { get; set; }
+
+        public ICollection<UserLike> LikedUsers { get; set; }
+
     }
 }
