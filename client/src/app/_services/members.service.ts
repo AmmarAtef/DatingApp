@@ -30,7 +30,7 @@ export class MembersService {
     this.userParams = params;
   }
 
-  resetUserParams(){
+  resetUserParams() {
     this.userParams = new UserParams(this.user);
     return this.userParams;
   }
@@ -118,5 +118,14 @@ export class MembersService {
   deletePhoto(photoId: number) {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
   }
+
+  addLike(username: string) {
+    return this.http.post(this.baseUrl + "liked/" + username, {});
+  }
+
+  getLikes(predicate:string){
+    return this.http.get<Partial<Member[]>>(this.baseUrl +'liked?predicate='+predicate);
+  }
+
 
 }

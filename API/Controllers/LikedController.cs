@@ -44,14 +44,16 @@ namespace API.Controllers
             if (userLike != null)
                 return BadRequest("you already Like this User");
 
-            userLike = new UserLike
+             userLike = new UserLike
             {
                 SourceUserId = sourceUserId,
-                LikedUserId = likedUser.Id
+                LikedUserId = likedUser.Id,
+                SourceUser = sourceUser,
+                LikedUser = likedUser
             };
 
             sourceUser.LikedUsers.Add(userLike);
-            if (await _userRepository.SaveAllAsync())
+            if (await _likesRepository.SaveAllAsync())
             {
                 return Ok();
             }
