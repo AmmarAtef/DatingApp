@@ -19,10 +19,10 @@ namespace API.Helpers
                 return;
             }
             var userId = resultAction.HttpContext.User.GetUserId();
-            var repo = resultAction.HttpContext.RequestServices.GetService<IUserRepository>();
-            var user = await repo.GetUserByIdAsync(userId);
-            user.LastActive = DateTime.Now;
-            await repo.SaveAllAsync();
+            var repo = resultAction.HttpContext.RequestServices.GetService<IUnitOfWork>();
+            var user = await repo.UserRepository.GetUserByIdAsync(userId);
+            user.LastActive = DateTime.UtcNow;
+            await repo.Complete();
         }
     }
 }
